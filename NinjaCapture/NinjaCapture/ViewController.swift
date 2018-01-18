@@ -13,7 +13,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        _ = Capture()
+        var a = Merge.init(pathToVideos: "1", pathToSave: "2")
+        
     }
 
     override var representedObject: Any? {
