@@ -26,9 +26,9 @@
 		1F9D31DF2010DC6300811E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F9D31E12010DC6300811E25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9D31E22010DC6300811E25 /* NinjaCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NinjaCapture.entitlements; sourceTree = "<group>"; };
-		1F9D31E82010DD5400811E25 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		1F9D31E92010DD5400811E25 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		1F9D31EC2010DDF400811E25 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
+		1F9D31E82010DD5400811E25 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1F9D31E92010DD5400811E25 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1F9D31EC2010DDF400811E25 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1F9D31F22010F19100811E25 /* Capture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Capture.swift; sourceTree = "<group>"; };
 		1F9D31F32010F19100811E25 /* Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Merge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,9 +47,6 @@
 		1F9D31CC2010DC6300811E25 = {
 			isa = PBXGroup;
 			children = (
-				1F9D31E92010DD5400811E25 /* LICENSE */,
-				1F9D31EC2010DDF400811E25 /* .gitignore */,
-				1F9D31E82010DD5400811E25 /* README.md */,
 				1F9D31D72010DC6300811E25 /* NinjaCapture */,
 				1F9D31D62010DC6300811E25 /* Products */,
 			);
@@ -66,6 +63,9 @@
 		1F9D31D72010DC6300811E25 /* NinjaCapture */ = {
 			isa = PBXGroup;
 			children = (
+				1F9D31E92010DD5400811E25 /* LICENSE */,
+				1F9D31EC2010DDF400811E25 /* .gitignore */,
+				1F9D31E82010DD5400811E25 /* README.md */,
 				1F9D31D82010DC6300811E25 /* AppDelegate.swift */,
 				1F9D31DA2010DC6300811E25 /* ViewController.swift */,
 				1F9D31F22010F19100811E25 /* Capture.swift */,
