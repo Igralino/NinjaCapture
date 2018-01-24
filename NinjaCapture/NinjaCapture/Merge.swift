@@ -8,6 +8,7 @@
 
 import Cocoa
 import AVFoundation
+import os.log
 
 class Merge: NSObject {
     
@@ -29,7 +30,7 @@ class Merge: NSObject {
             return files
         }
         catch {
-            print(error)
+            os_log(error as! StaticString, type: .error)
             return nil
         }
     }
@@ -50,7 +51,7 @@ class Merge: NSObject {
                 }
             }
             catch{
-                print (error)
+                os_log (error as! StaticString, type: .error)
             }
             
         }
@@ -59,7 +60,6 @@ class Merge: NSObject {
         
         let videoURLToSave = folder.appendingPathComponent("mergeVideo-\(arc4random()%1000)-d.mov")
         
-        print (videoURLToSave)
         let exporter = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetHighestQuality)
         exporter?.outputURL = videoURLToSave
         exporter?.outputFileType = AVFileType.mov
@@ -74,7 +74,7 @@ class Merge: NSObject {
         })
         
         group.notify(queue: DispatchQueue.main, execute: {
-        print("ready")
+            os_log("Video merging successfully finished!", type: .debug)
         })
     }
 }

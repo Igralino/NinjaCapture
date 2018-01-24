@@ -9,21 +9,31 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
+    //MARK: Properties
+    @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var stopButton: NSButton!
+    @IBOutlet weak var mergeButton: NSButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
 
+    //MARK: Actions
+    
+    @IBAction func startRecording(_ sender: Any) {
         _ = Capture()
-        var a = Merge.init(pathToVideos: "1", pathToSave: "2")
-        
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    
+    @IBAction func stopRecording(_ sender: Any) {
     }
-
-
+    
+    @IBAction func mergeVideos(_ sender: Any) {
+        _ = Merge(pathToVideos: "1", pathToSave: "2")
+    }
+    
 }
 

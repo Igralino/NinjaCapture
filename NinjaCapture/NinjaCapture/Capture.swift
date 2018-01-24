@@ -9,21 +9,20 @@
 import Cocoa
 import Foundation
 import AVFoundation
-
+import os.log
 class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     var session : AVCaptureSession!
     var input : AVCaptureScreenInput?
     var output_file : AVCaptureMovieFileOutput!
     var output_screen : AVCaptureVideoDataOutput!
-    var started : Bool = false
-    var finished : Bool = false
+    var length : Int64 = 60
+    var index_of_part : Int = 1
     
     override init(){
         super.init()
         self.session = AVCaptureSession()
         self.session.sessionPreset = AVCaptureSession.Preset.high
-        
         self.input = AVCaptureScreenInput.init(displayID: CGMainDisplayID())
         configureInput()
         tryInput()
@@ -34,6 +33,12 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         
         tryCapture()
         
+    }
+    
+    func captureQueue(){
+        if (index_of_part <= length/10){
+            tryCapture()
+        }
     }
     
     func configureInput(){
@@ -47,8 +52,8 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     func configureMovieOutput(){
         if (self.output_file != nil){
-            self.output_file.movieFragmentInterval = CMTimeMake(5, 1) // 2 second per interval
-            self.output_file.maxRecordedDuration = CMTimeMake(10, 1) // 10 seconds maximum duration
+            self.output_file.movieFragmentInterval = CMTimeMake(2, 1) // 2 second per interval
+            self.output_file.maxRecordedDuration = CMTimeMake(23, 2) // 10 seconds maximum duration
         }
     }
     
@@ -77,21 +82,17 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         let date = getDate()
         let directory = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
         let url = directory.appendingPathComponent("Videos/\(date).mov")
-        print ("\nSaving URL: \(url) \n")
         self.output_file.startRecording(to: url, recordingDelegate: self)
-        started = true
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         if error != nil{
-            print ("\nSuccsesfully finished!\n")
+            os_log("Video capturing successfully finished!", type: .info)
         }
         else{
-            
-            print ("\nFinished with errors:\n")
-            print (error!.localizedDescription)
+            os_log("\nVideo capturing finished with errors:\n", type: .info)
         }
-        started = false
-        finished = true
+        self.index_of_part += 1
+        self.captureQueue()
     }
 }
