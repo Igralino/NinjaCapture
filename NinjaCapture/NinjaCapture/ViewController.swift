@@ -47,6 +47,7 @@ class ViewController: NSViewController {
     @IBAction func startRecording(_ sender: Any) {
         capture_session.capturing = true
         capture_session.save_url = save_url
+        capture_session.deletePrevious()
         capture_session.captureQueue()
     }
     

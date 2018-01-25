@@ -23,13 +23,12 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     
     override init(){
         super.init()
+        self.output_file = AVCaptureMovieFileOutput.init()
         self.session = AVCaptureSession()
         self.session.sessionPreset = AVCaptureSession.Preset.high
         self.input = AVCaptureScreenInput.init(displayID: CGMainDisplayID())
         configureInput()
         tryInput()
-        
-        self.output_file = AVCaptureMovieFileOutput.init()
         configureMovieOutput()
         tryOutput()
     }
@@ -52,6 +51,17 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         }
     }
     
+    func deletePrevious(){
+        let enumerator = FileManager.default.enumerator(at: save_url, includingPropertiesForKeys: nil)
+        while let file = enumerator?.nextObject() as? URL {
+            do {
+                try FileManager.default.removeItem(at: file)
+            }
+            catch {
+                os_log(error as! StaticString, type: .error)
+            }
+        }
+    }
     func configureInput(){
         if (self.input != nil){
             self.input?.capturesCursor = true
