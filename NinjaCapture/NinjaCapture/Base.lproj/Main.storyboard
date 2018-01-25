@@ -691,7 +691,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yiL-bx-Tjf">
-                                <rect key="frame" x="52" y="114" width="70" height="32"/>
+                                <rect key="frame" x="54" y="44" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9p4-j0-LUd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -699,7 +699,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eJ-Jl-T8Z">
-                                <rect key="frame" x="192" y="114" width="69" height="32"/>
+                                <rect key="frame" x="200" y="44" width="69" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Afg-If-IY3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -710,7 +710,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qZ-O9-07n">
-                                <rect key="frame" x="333" y="114" width="79" height="32"/>
+                                <rect key="frame" x="335" y="44" width="79" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Merge" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cvx-gM-rAn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -721,7 +721,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WAI-Ku-o7e">
-                                <rect key="frame" x="52" y="114" width="70" height="32"/>
+                                <rect key="frame" x="54" y="44" width="70" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KRC-W9-xGe">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -731,16 +731,44 @@
                                     <action selector="startRecording:" target="XfG-lQ-9wD" id="PzO-PI-aZD"/>
                                 </connections>
                             </button>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyP-VX-b98">
+                                <rect key="frame" x="132" y="202" width="205" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Desktop folder" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="fea-aL-WV8" id="oG8-Jz-Rx5">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Bpf-6d-qc4">
+                                        <items>
+                                            <menuItem title="Desktop folder" state="on" id="fea-aL-WV8"/>
+                                            <menuItem title="Documents folder" tag="1" id="Ml3-uH-O1x"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="folderChanged:" target="XfG-lQ-9wD" id="d14-Ew-b1e"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55a-FT-Xdp">
+                                <rect key="frame" x="60" y="162" width="348" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" title="URL to folder" id="oko-fp-1gV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="folderLabel" destination="55a-FT-Xdp" id="Dpc-qA-Zzy"/>
+                        <outlet property="folderPicker" destination="JyP-VX-b98" id="Vb0-oa-ndz"/>
                         <outlet property="mergeButton" destination="5qZ-O9-07n" id="VnM-TO-PwK"/>
                         <outlet property="startButton" destination="WAI-Ku-o7e" id="YQz-iO-HN0"/>
                         <outlet property="stopButton" destination="6eJ-Jl-T8Z" id="R7g-Fa-n1B"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="88" y="724"/>
+            <point key="canvasLocation" x="87.5" y="724"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="JOV-bk-z74">

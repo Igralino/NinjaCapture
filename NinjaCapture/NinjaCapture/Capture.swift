@@ -16,8 +16,10 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     var input : AVCaptureScreenInput?
     var output_file : AVCaptureMovieFileOutput!
     var output_screen : AVCaptureVideoDataOutput!
-    var length : Int64 = 60
-    var index_of_part : Int = 1
+    var save_url : URL!
+    var length : Int64 = 3*10
+    var file_queue = Queue<URL>()
+    var capturing: Bool = false
     
     override init(){
         super.init()
@@ -30,14 +32,23 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         self.output_file = AVCaptureMovieFileOutput.init()
         configureMovieOutput()
         tryOutput()
-        
-        tryCapture()
-        
     }
     
     func captureQueue(){
-        if (index_of_part <= length/10){
-            tryCapture()
+        if capturing {
+            if (file_queue.count < length/10){
+                tryCapture()
+            }
+            else {
+                let delete_url = file_queue.dequeue()
+                do {
+                    try FileManager.default.removeItem(at: delete_url!)
+                }
+                catch {
+                    os_log(error as! StaticString, type: .error)
+                }
+                tryCapture()
+            }
         }
     }
     
@@ -80,9 +91,14 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     func tryCapture(){
         self.session.startRunning()
         let date = getDate()
-        let directory = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
-        let url = directory.appendingPathComponent("Videos/\(date).mov")
-        self.output_file.startRecording(to: url, recordingDelegate: self)
+        let directory = save_url
+        let url = directory?.appendingPathComponent("Videos/\(date).mov")
+        file_queue.enqueue(url!)
+        self.output_file.startRecording(to: url!, recordingDelegate: self)
+    }
+    
+    func tryStop(){
+        self.session.stopRunning()
     }
     
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
@@ -92,7 +108,6 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         else{
             os_log("\nVideo capturing finished with errors:\n", type: .info)
         }
-        self.index_of_part += 1
         self.captureQueue()
     }
 }
