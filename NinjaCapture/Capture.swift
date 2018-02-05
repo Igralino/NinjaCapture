@@ -102,7 +102,14 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         self.session.startRunning()
         let date = getDate()
         let directory = save_url
+        let folder = directory?.appendingPathComponent("Videos/")
         let url = directory?.appendingPathComponent("Videos/\(date).mov")
+        do{
+            try FileManager.default.createDirectory(at: folder!, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch{
+            os_log (error as! StaticString, type: .error)
+        }
         file_queue.enqueue(url!)
         self.output_file.startRecording(to: url!, recordingDelegate: self)
     }
