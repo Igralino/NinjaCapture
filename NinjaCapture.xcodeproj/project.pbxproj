@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2D6A25204BE59F00286898 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D6A24204BE59F00286898 /* SettingsViewController.swift */; };
 		1F76DF7B2017854C00369430 /* mainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F76DF7A2017854C00369430 /* mainWindowController.swift */; };
 		1F9D31D92010DC6300811E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D31D82010DC6300811E25 /* AppDelegate.swift */; };
 		1F9D31DB2010DC6300811E25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9D31DA2010DC6300811E25 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2D6A24204BE59F00286898 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1F76DF7A2017854C00369430 /* mainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainWindowController.swift; sourceTree = "<group>"; };
 		1F9D31D52010DC6300811E25 /* NinjaCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9D31D82010DC6300811E25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,11 +74,12 @@
 			children = (
 				1F9D31D82010DC6300811E25 /* AppDelegate.swift */,
 				1F9D31DA2010DC6300811E25 /* ViewController.swift */,
+				1F2D6A24204BE59F00286898 /* SettingsViewController.swift */,
 				1F9D31F32010F19100811E25 /* Merge.swift */,
 				1F9D31F22010F19100811E25 /* Capture.swift */,
 				1FC7E369201A15D600CFC663 /* Queue.swift */,
-				1F9D31DE2010DC6300811E25 /* Main.storyboard */,
 				1F76DF7A2017854C00369430 /* mainWindowController.swift */,
+				1F9D31DE2010DC6300811E25 /* Main.storyboard */,
 				1F9D31DC2010DC6300811E25 /* Assets.xcassets */,
 				1F9D31E12010DC6300811E25 /* Info.plist */,
 				1F9D31E22010DC6300811E25 /* NinjaCapture.entitlements */,
@@ -165,6 +168,7 @@
 			files = (
 				1F76DF7B2017854C00369430 /* mainWindowController.swift in Sources */,
 				1FC7E36A201A15D600CFC663 /* Queue.swift in Sources */,
+				1F2D6A25204BE59F00286898 /* SettingsViewController.swift in Sources */,
 				1F9D31F52010F19100811E25 /* Merge.swift in Sources */,
 				1F9D31DB2010DC6300811E25 /* ViewController.swift in Sources */,
 				1F9D31F42010F19100811E25 /* Capture.swift in Sources */,
