@@ -17,7 +17,9 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     var output_file : AVCaptureMovieFileOutput!
     var output_screen : AVCaptureVideoDataOutput!
     var save_url : URL!
-    var length : Int64 = 3*10
+    var length : Int = 3*10
+    var FPS: Int = 30
+    var quality: Int = 2
     var file_queue = Queue<URL>()
     var capturing: Bool = false
     
@@ -25,7 +27,6 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         super.init()
         self.output_file = AVCaptureMovieFileOutput.init()
         self.session = AVCaptureSession()
-        self.session.sessionPreset = AVCaptureSession.Preset.high
         self.input = AVCaptureScreenInput.init(displayID: CGMainDisplayID())
         configureInput()
         tryInput()
@@ -36,6 +37,7 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
     func captureQueue(){
         if capturing {
             if (file_queue.count < length/10){
+                
                 tryCapture()
             }
             else {
@@ -66,8 +68,21 @@ class Capture: NSObject, AVCaptureFileOutputRecordingDelegate {
         if (self.input != nil){
             self.input?.capturesCursor = true
             self.input?.capturesMouseClicks = true
-            self.input?.minFrameDuration = CMTimeMake(1, 60) //min 60 FPS
-            
+            self.input?.minFrameDuration = CMTimeMake(1, Int32(FPS))
+            switch (quality) {
+                
+            case 0:
+                self.session.sessionPreset = AVCaptureSession.Preset.low
+                break;
+            case 1:
+                self.session.sessionPreset = AVCaptureSession.Preset.medium
+                break;
+            case 2:
+                self.session.sessionPreset = AVCaptureSession.Preset.high
+                break;
+            default:
+                break;
+            }
         }
     }
     
