@@ -18,13 +18,18 @@ class ViewController: NSViewController {
     @IBOutlet weak var folderLabel: NSTextField!
     let capture_session = Capture()
     var save_url: URL!
-    
+    var settings = ["FPS" : 30,
+                    "seconds" : 60,
+                    "quality" : 2] //0 - low, 1 - medium, 3 - high
     override func viewDidLoad() {
         super.viewDidLoad()
         set_folder()
     }
+    func getSettings(data: [String : Int]){
+        settings = data
+        print (settings)
+    }
     
-
     func set_folder(){
         if (folderPicker.indexOfSelectedItem == 0){
             var url = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0]
@@ -37,7 +42,6 @@ class ViewController: NSViewController {
             url = url.appendingPathComponent("NinjaCapture")
             folderLabel.stringValue = url.debugDescription
             save_url = url
-
         }
     }
     
@@ -47,6 +51,10 @@ class ViewController: NSViewController {
     @IBAction func startRecording(_ sender: Any) {
         capture_session.capturing = true
         capture_session.save_url = save_url
+        capture_session.length = settings ["seconds"]!
+        capture_session.FPS = settings ["FPS"]!
+        capture_session.quality = settings ["quality"]!
+        capture_session.configureInput()
         capture_session.deletePrevious()
         capture_session.captureQueue()
     }
